@@ -7,11 +7,12 @@
     "declarationDir": "types",
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
+    "allowJs": true,
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
     }
   },
   "exclude": ["dist", "node_modules", "test/types"],
-  "include": ["src/**/*", "types/**/*", "test/**/*"]
+  "include": ["src/**/*", "types/**/*"]
 }

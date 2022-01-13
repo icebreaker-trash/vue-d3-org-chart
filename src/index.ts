@@ -1,9 +1,2 @@
-export const foo = 'bar'
-
-export const wait = (timeout?: number) => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(true)
-    }, timeout)
-  })
-}
+export { OrgChart } from './d3-org-chart'
+export * from 'd3-org-chart'

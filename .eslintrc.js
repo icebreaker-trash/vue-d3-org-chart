@@ -34,6 +34,11 @@ module.exports = {
     '@typescript-eslint'
   ],
   rules: {
+    eqeqeq: 1,
+    'no-return-assign': 1,
+    'no-unused-vars': 1,
+    'no-mixed-operators': 1,
+    'no-undef': 1
   },
   globals: {
     ...getJestGlobals()
