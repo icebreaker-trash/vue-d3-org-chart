@@ -4,7 +4,6 @@ import { tree, stratify } from 'd3-hierarchy'
 import { zoom, zoomIdentity } from 'd3-zoom'
 import { flextree } from 'd3-flextree'
 import { linkHorizontal } from 'd3-shape'
-import Vue from 'vue'
 
 const d3 = {
   selection,
