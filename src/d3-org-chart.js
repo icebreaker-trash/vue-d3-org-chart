@@ -1089,19 +1089,13 @@ export class OrgChart {
         return document.createElement('div')
       })
       .each(function (d, i, arr) {
-        if (!d._mounted) {
-          const app = new Vue({
-            render (h) {
-              return h(attrs.nodeContent.bind(this)(d, i, arr, attrs), {
-                props: {
-                  data: d,
-                  index: i
-                }
-              })
-            }
-          })
+        if (!d.data._mounted) {
+          /**
+           * @type {import('vue/types/vue').Vue} app
+           */
+          const app = attrs.nodeContent.bind(this)(d, i, arr, attrs)
           app.$mount(this)
-          d._mounted = true
+          d.data._mounted = true
         }
       })
     // .html(function (d, i, arr) { return attrs.nodeContent.bind(this)(d, i, arr, attrs) })
@@ -1134,7 +1128,7 @@ export class OrgChart {
         if (d.children) {
           d.children.forEach((c) => {
             c.data._expanded = true
-            c._mounted = false
+            this.setMountedFlagToChildren(c, false)
           })
         }
       }
@@ -1142,6 +1136,25 @@ export class OrgChart {
 
     // Redraw Graph
     this.update(d)
+  }
+
+  setMountedFlagToChildren ({ data, children, _children }, flag) {
+    // Set flag to the current property
+    data._mounted = flag
+    // data._mounted = !flag;
+    // Loop over and recursively update expanded children's descendants
+    if (children) {
+      children.forEach((d) => {
+        this.setMountedFlagToChildren(d, flag)
+      })
+    }
+
+    // Loop over and recursively update collapsed children's descendants
+    if (_children) {
+      _children.forEach((d) => {
+        this.setMountedFlagToChildren(d, flag)
+      })
+    }
   }
 
   // This function changes `expanded` property to descendants

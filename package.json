@@ -1,6 +1,6 @@
 {
   "name": "vue-d3-org-chart",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "vue-d3-org-chart",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
